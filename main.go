@@ -2,11 +2,13 @@ package main
 
 import (
 	"Learning-Gin/models/forms"
+	"Learning-Gin/models/uri"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -20,6 +22,23 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Hello World! :)")
+	})
+
+	r.GET("/hello/:name/:times", func(c *gin.Context) {
+		var data uri.HelloUri
+		err := c.ShouldBindUri(&data)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"status":  "error",
+				"message": "Bad request",
+			})
+			return
+		}
+
+		msg := "Hello " + data.Name + "! "
+		regards := strings.Repeat(msg, data.Times)
+		c.String(http.StatusOK, regards)
 	})
 
 	r.GET("/ping", func(c *gin.Context) {
