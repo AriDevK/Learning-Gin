@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Learning-Gin/models/forms"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
@@ -45,13 +46,21 @@ func main() {
 	})
 
 	r.POST("/form", func(c *gin.Context) {
-		message := c.PostForm("message")
-		nick := c.DefaultPostForm("nick", "anonymous")
+		var data forms.MessageForm
+		err := c.Bind(&data)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"status":  "error",
+				"message": "Bad request",
+			})
+			return
+		}
 
 		c.JSON(http.StatusOK, gin.H{
 			"status":  "posted",
-			"message": message,
-			"nick":    nick,
+			"message": data.Message,
+			"nick":    data.Nick,
 		})
 	})
 
