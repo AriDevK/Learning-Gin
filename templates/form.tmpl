@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form example</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-top: 1rem;
+        }
+
+        input, textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+{{ .title }}
+<form action="/form" method="post">
+    <label for="nick">Nickname</label>
+    <input type="text" id="nick" name="nick" placeholder="Ariadne Fave :3">
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="This is an example of a message">
+    </textarea>
+
+    <button type="submit" class="btn">Submit</button>
+</form>
+</body>
+</html>
