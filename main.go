@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	gin.ForceConsoleColor()
 
+	r := gin.Default()
 	f, _ := os.Create("gin.log")
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
@@ -22,5 +23,5 @@ func main() {
 		})
 	})
 
-	r.Run()
+	r.Run(":8080")
 }
