@@ -41,6 +41,12 @@ func main() {
 		c.String(http.StatusOK, regards)
 	})
 
+	r.GET("/params/:param/*optional", func(c *gin.Context) {
+		param := c.Param("param")
+		optional := c.Param("optional")
+		c.String(http.StatusOK, fmt.Sprintf("Param: %s\nOptional: %s", param, optional))
+	})
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",

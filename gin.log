@@ -1,9 +1,11 @@
 [GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /hello/:name/:times       --> main.main.func2 (3 handlers)
-[GIN-debug] GET    /ping                     --> main.main.func3 (3 handlers)
-[GIN-debug] GET    /cookie                   --> main.main.func4 (3 handlers)
-[GIN-debug] GET    /form                     --> main.main.func5 (3 handlers)
-[GIN-debug] POST   /form                     --> main.main.func6 (3 handlers)
+[GIN-debug] GET    /params/:param/*optional  --> main.main.func3 (3 handlers)
+[GIN-debug] GET    /ping                     --> main.main.func4 (3 handlers)
+[GIN-debug] GET    /cookie                   --> main.main.func5 (3 handlers)
+[GIN-debug] GET    /form                     --> main.main.func6 (3 handlers)
+[GIN-debug] POST   /form                     --> main.main.func7 (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] redirecting request 301: /params/test/ --> /params/test/
