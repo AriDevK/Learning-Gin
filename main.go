@@ -47,6 +47,13 @@ func main() {
 		c.String(http.StatusOK, fmt.Sprintf("Param: %s\nOptional: %s", param, optional))
 	})
 
+	r.GET("/query", func(c *gin.Context) {
+		id := c.Query("id")
+		limit := c.DefaultQuery("limit", "10")
+		offset := c.DefaultQuery("offset", "0")
+		c.String(http.StatusOK, fmt.Sprintf("id: %s; limit: %s; offset: %s", id, limit, offset))
+	})
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
