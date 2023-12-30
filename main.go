@@ -96,5 +96,9 @@ func main() {
 		})
 	})
 
+	r.GET("/google", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, "https://google.com")
+	})
+
 	r.Run(":8080")
 }
